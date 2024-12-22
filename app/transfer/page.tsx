@@ -47,10 +47,19 @@ export default function Transfer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const transferRecipients = recipients.filter(r => r.amount > 0).map(r => ({
+      accountId: r.accountId,
+      amount: r.amount,
+    }));
+
     addTransfer({
       date: transferDate,
       sourceAccountId,
-      recipients: recipients.filter(r => r.amount > 0),
+      recipientAccountId: transferRecipients[0].accountId,
+      amount: transferRecipients.reduce((sum, r) => sum + r.amount, 0),
+      term: 0,
+      interestRate: 0,
+      recipients: transferRecipients,
     });
     setSuccessMessage(`Transfer from ${sourceAccount?.name} successful!`);
     // Reset form
@@ -139,7 +148,7 @@ export default function Transfer() {
               })}
             </div>
           </div>
-        </div>
+    </div>
       </form>
     </div>
   );

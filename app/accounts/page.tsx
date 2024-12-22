@@ -107,7 +107,7 @@ export default function Accounts() {
                     <>
                       <div className="space-y-2">
                         <h3 className="font-semibold text-gray-900">{account.name}</h3>
-                        <p className="text-sm text-gray-600">XAF {account.balance}</p>
+                        <p className="text-sm text-gray-600">XAF {isNaN(account.balance) ? 0 : account.balance}</p>
                         {accountTransfers.length > 0 && (
                           <div className="mt-2">
                             <button onClick={() => toggleTransfers(account.id)} className="flex items-center justify-between w-full text-gray-700 font-semibold">

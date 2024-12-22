@@ -30,6 +30,7 @@ interface Transfer {
   amount: number;
   term: number;
   interestRate: number;
+  recipients: { accountId: string; amount: number }[];
 }
 
 interface AppContextType {
@@ -158,13 +159,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (account.id === transfer.sourceAccountId) {
         return {
           ...account,
-          balance: account.balance + (revert ? transfer.amount : -transfer.amount),
+          balance: isNaN(account.balance + (revert ? transfer.amount : -transfer.amount)) ? 0 : account.balance + (revert ? transfer.amount : -transfer.amount),
         };
       }
       if (account.id === transfer.recipientAccountId) {
         return {
           ...account,
-          balance: account.balance + (revert ? -transfer.amount : transfer.amount),
+          balance: isNaN(account.balance + (revert ? -transfer.amount : transfer.amount)) ? 0 : account.balance + (revert ? -transfer.amount : transfer.amount),
         };
       }
       return account;
@@ -200,6 +201,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         amount: 200,
         term: 12,
         interestRate: 5,
+        recipients: [{ accountId: '1', amount: 200 }],
       },
       {
         id: '2',
@@ -209,6 +211,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         amount: 100,
         term: 12,
         interestRate: 5,
+        recipients: [{ accountId: '3', amount: 100 }],
       },
     ];
     const sampleLoans: Loan[] = [
