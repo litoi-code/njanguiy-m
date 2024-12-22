@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #f0f2f5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.bg-primary-600 {
+  background-color: #2563eb;
+}
+
+.bg-primary-600:hover {
+  background-color: #1d4ed8;
+}
+
+.bg-yellow-500 {
+  background-color: #facc15;
+}
+
+.bg-yellow-500:hover {
+    background-color: #eab308;
+}
+
+.bg-red-500 {
+    background-color: #ef4444;
+}
+
+.bg-red-500:hover {
+    background-color: #dc2626;
+}
+
+.bg-green-500 {
+    background-color: #22c55e;
+}
+
+.bg-green-500:hover {
+    background-color: #16a34a;
+}
